@@ -9,7 +9,7 @@ import generate from '../src';
 describe('ZenStack Markdown Plugin Tests', () => {
     it('todo', async () => {
         const { model, dmmf, modelFile } = await loadZModelAndDmmf(`
-plugin zenstack-md {
+plugin zenstackmd {
     provider = '${process.cwd()}/dist'
 }
 
