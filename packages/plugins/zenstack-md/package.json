@@ -1,0 +1,48 @@
+{
+  "name": "zenstack-markdown",
+  "displayName": "ZenStack Markdown Geneartor",
+  "version": "0.0.1",
+  "description": "ZModel markdown geneartor",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zenstackhq/zenstack"
+  },
+  "publishConfig": {
+    "directory": "dist",
+    "linkDirectory": true
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build": "pnpm lint && pnpm clean && tsc && copyfiles ./package.json ./README.md ./LICENSE dist && copyfiles -u 1 ./src/plugin.zmodel dist",
+    "watch": "tsc --watch",
+    "lint": "eslint src --ext ts",
+    "test": "jest",
+    "prepublishOnly": "pnpm build"
+  },
+  "author": "Jiasheng Guo",
+  "license": "MIT",
+  "dependencies": {
+    "@prisma/generator-helper": "^5.0.0",
+    "@zenstackhq/runtime": "workspace:*",
+    "@zenstackhq/sdk": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "@types/node": "^18.0.0",
+    "@types/pluralize": "^0.0.29",
+    "@types/tmp": "^0.2.3",
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "@typescript-eslint/parser": "^5.54.0",
+    "@zenstackhq/testtools": "workspace:*",
+    "copyfiles": "^2.4.1",
+    "eslint": "^8.35.0",
+    "jest": "^29.5.0",
+    "pluralize": "^8.0.0",
+    "rimraf": "^3.0.2",
+    "tmp": "^0.2.1",
+    "ts-jest": "^29.0.5",
+    "typescript": "^4.9.5",
+    "zenstack": "workspace:*"
+  }
+}
