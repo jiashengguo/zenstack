@@ -7,7 +7,7 @@ export default class MermaidGenerator {
             .filter((x) => !isRelationshipField(x))
             .map((x) => {
                 return [
-                    x.type.type,
+                    x.type.type || x.type.reference?.ref?.name,
                     x.name,
                     isIdField(x) ? 'PK' : isForeignKeyField(x) ? 'FK' : '',
                     x.type.optional ? '"nullable"' : '',

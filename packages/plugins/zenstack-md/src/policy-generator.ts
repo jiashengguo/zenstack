@@ -26,16 +26,18 @@ export default class PolicyGenerator {
         return this.CRUD.map((x) => {
             //deny first
             const rules = groupByCrud[x]
-                .sort((a) => {
-                    return a.decl.ref?.name == '@@deny' ? -1 : 1;
-                })
-                .map(
-                    (x) =>
-                        `  - ${x.decl.ref?.name == '@@deny' ? '❌' : '✅'}${this.zModelGenerator.generateExpression(
-                            x.args[1].value
-                        )}`
-                )
-                .join('\n');
+                ? groupByCrud[x]
+                      .sort((a) => {
+                          return a.decl.ref?.name == '@@deny' ? -1 : 1;
+                      })
+                      .map(
+                          (x) =>
+                              `  - ${
+                                  x.decl.ref?.name == '@@deny' ? '❌' : '✅'
+                              }${this.zModelGenerator.generateExpression(x.args[1].value)}`
+                      )
+                      .join('\n')
+                : [];
 
             return [`- ${x.toUpperCase()}`, rules].join('\n');
         }).join('\n');
